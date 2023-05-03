@@ -16,67 +16,68 @@ Numerically Solving the Time Independent Schrödinger Equation
  We will use the numpy.linalg.eigh() function to solve the eigenvalue problem and obtain the energy eigenvalues and wavefunctions. '
  We will then plot the energy eigenvalues and wavefunctions as a function of "a" and "V" using the matplotlib library.'
          
-         '#ndfsdfgs
-'import numpy as np \n import matplotlib.pyplot as plt \n\n'
-'class ParticleInABox:'
-    'def __init__(self, a, b, V, N=1000): \n'
-      '  self.a = a \n'
-       ' self.b = b \n'
-       ' self.V = V \n'
-       ' self.N = N \n'
-       ' self.dx = (b-a)/N \n'
-       ' self.x = np.linspace(a, b, N) \n'
-       ' self.psi = np.zeros(N) \n'
-       ' self.Vx = np.zeros(N) \n'
-       ' self.H = np.zeros((N, N)) \n\n'
+   
+import numpy as np
+import matplotlib.pyplot as plt
+class ParticleInABox:
+    def __init__(self, a, b, V, N=1000):
+        self.a = a
+        self.b = b
+        self.V = V
+        self.N = N
+        self.dx = (b-a)/N
+        self.x = np.linspace(a, b, N)
+        self.psi = np.zeros(N)
+        self.Vx = np.zeros(N)
+        self.H = np.zeros((N, N))
 
-   ' def set_potential(self): \n'
-       ' for i in range(self.N): \n'
-           ' if self.a <= self.x[i] <= self.b: \n'
-               ' self.Vx[i] = self.V \n'
-           ' else: \n'
-            '    self.Vx[i] = np.inf \n\n'
+    def set_potential(self):
+        for i in range(self.N):
+            if self.a <= self.x[i] <= self.b:
+                self.Vx[i] = self.V
+            else:
+                self.Vx[i] = np.inf
 
-   ' def set_hamiltonian(self): \n'
-      '  self.H = np.zeros((self.N, self.N)) \n'
-      '  for i in range(1, self.N-1): \n'
-       '     self.H[i,i] = -2/self.dx**2 + self.Vx[i] \n'
-       '     self.H[i,i+1] = 1/self.dx**2 \n'
-       '     self.H[i,i-1] = 1/self.dx**2 \n\n'
+    def set_hamiltonian(self):
+        self.H = np.zeros((self.N, self.N))
+        for i in range(1, self.N-1):
+            self.H[i,i] = -2/self.dx**2 + self.Vx[i]
+            self.H[i,i+1] = 1/self.dx**2
+            self.H[i,i-1] = 1/self.dx**2
 
-      '  # Boundary conditions '
-      '  self.H[0,0] = 1 '
-      '  self.H[0,1] = 0 '
-      '  self.H[-1,-1] = 1 '
-        'self.H[-1,-2] = 0 '
+        # Boundary conditions
+        self.H[0,0] = 1
+        self.H[0,1] = 0
+        self.H[-1,-1] = 1
+        self.H[-1,-2] = 0
 
-    'def solve(self): '
-       ' self.set_potential() '
-      '  self.set_hamiltonian() \n'
-      '  self.energy, self.wavefunction = np.linalg.eigh(self.H) '
-      '  self.psi = self.wavefunction[:,0] '
+    def solve(self):
+        self.set_potential()
+        self.set_hamiltonian()
+        self.energy, self.wavefunction = np.linalg.eigh(self.H)
+        self.psi = self.wavefunction[:,0]
 
-   ' def plot_wavefunction(self): \n'
-   '     plt.plot(self.x, self.psi) \n'
-   '     plt.title("Wavefunction") \n'
-   '     plt.xlabel("x") \n'
-   '     plt.ylabel("psi(x)") \n'
-   '     plt.show() \n\n'
+    def plot_wavefunction(self):
+        plt.plot(self.x, self.psi)
+        plt.title("Wavefunction")
+        plt.xlabel("x")
+        plt.ylabel("psi(x)")
+        plt.show()
 
-   ' def plot_energy(self): \n'
-   '     plt.plot(self.energy) \n'
-   '     plt.title("Energy Eigenvalues") \n'
-   '     plt.xlabel("n") \n'
-   '     plt.ylabel("Energy") \n'
-   '     plt.show() \n\n'
+    def plot_energy(self):
+        plt.plot(self.energy)
+        plt.title("Energy Eigenvalues")
+        plt.xlabel("n")
+        plt.ylabel("Energy")
+        plt.show()
 
-'if __name__ == "__main__": \n'
- '   a = 0 \n'
- '   b = 1 \n'
- '   V = 1 \n'
- '   pib = ParticleInABox(a, b, V) \n'
- '   pib.solve() \n'
- '   pib.plot_wavefunction() \n'
- '   pib.plot_energy()'
-            
+if __name__ == "__main__":
+    a = 0
+    b = 1
+    V = 1
+    pib = ParticleInABox(a, b, V)
+    pib.solve()
+    pib.plot_wavefunction()
+    pib.plot_energy()
+                
             
