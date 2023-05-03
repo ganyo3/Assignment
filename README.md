@@ -15,7 +15,8 @@ Numerically Solving the Time Independent Schrödinger Equation
             The Hamiltonian Matrix is also given as : <h4>H[i,j] = 2/$dx^2$ + V[i]</h4> where dx is the spacing between the points, and V[i] is the potential energy at the i-th point.
  We will use the numpy.linalg.eigh() function to solve the eigenvalue problem and obtain the energy eigenvalues and wavefunctions. '
  We will then plot the energy eigenvalues and wavefunctions as a function of "a" and "V" using the matplotlib library.'
-            
+         
+         '#ndfsdfgs
 'import numpy as np \n import matplotlib.pyplot as plt \n\n'
 'class ParticleInABox:'
     'def __init__(self, a, b, V, N=1000): \n'
