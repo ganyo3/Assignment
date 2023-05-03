@@ -12,11 +12,11 @@ Numerically Solving the Time Independent Schrödinger Equation
              '<p>To solve the time-independent Schrödinger equation for a particle in a one-dimensional potential well, we will use the finite difference method to discretize the wavefunction and potential energy function.</p>'
             'Calculate the wavefunction and the potential energy at each point using the given potential energy function. Using the numpy library, solve the eigenvalue problem which is given by : <h4>[H][psi] = E[psi]</h4>'
             'where [H] is the Hamiltonian matrix, [psi] is the wavefunction vector, and E is the energy eigenvalue. '
-            '<p>The Hamiltonian Matrix is also given as : <h4>H[i,j] = 2/$dx^2$ + V[i]</h4> where dx is the spacing between the points, and V[i] is the potential energy at the i-th point.</p>'
-            'We will use the numpy.linalg.eigh() function to solve the eigenvalue problem and obtain the energy eigenvalues and wavefunctions. '
-            'We will then plot the energy eigenvalues and wavefunctions as a function of "a" and "V" using the matplotlib library.'
+            The Hamiltonian Matrix is also given as : <h4>H[i,j] = 2/$dx^2$ + V[i]</h4> where dx is the spacing between the points, and V[i] is the potential energy at the i-th point.
+ We will use the numpy.linalg.eigh() function to solve the eigenvalue problem and obtain the energy eigenvalues and wavefunctions. '
+ We will then plot the energy eigenvalues and wavefunctions as a function of "a" and "V" using the matplotlib library.'
             
-'$import numpy as np \n import matplotlib.pyplot as plt \n\n'
+'import numpy as np \n import matplotlib.pyplot as plt \n\n'
 'class ParticleInABox:'
     'def __init__(self, a, b, V, N=1000): \n'
       '  self.a = a \n'
@@ -43,17 +43,17 @@ Numerically Solving the Time Independent Schrödinger Equation
        '     self.H[i,i+1] = 1/self.dx**2 \n'
        '     self.H[i,i-1] = 1/self.dx**2 \n\n'
 
-      '  # Boundary conditions \n'
-      '  self.H[0,0] = 1 \n'
-      '  self.H[0,1] = 0 \n'
-      '  self.H[-1,-1] = 1 \n'
-        'self.H[-1,-2] = 0 \n\n'
+      '  # Boundary conditions '
+      '  self.H[0,0] = 1 '
+      '  self.H[0,1] = 0 '
+      '  self.H[-1,-1] = 1 '
+        'self.H[-1,-2] = 0 '
 
-    'def solve(self): \n'
-       ' self.set_potential() \n'
+    'def solve(self): '
+       ' self.set_potential() '
       '  self.set_hamiltonian() \n'
-      '  self.energy, self.wavefunction = np.linalg.eigh(self.H) \n'
-      '  self.psi = self.wavefunction[:,0] \n\n'
+      '  self.energy, self.wavefunction = np.linalg.eigh(self.H) '
+      '  self.psi = self.wavefunction[:,0] '
 
    ' def plot_wavefunction(self): \n'
    '     plt.plot(self.x, self.psi) \n'
@@ -76,6 +76,6 @@ Numerically Solving the Time Independent Schrödinger Equation
  '   pib = ParticleInABox(a, b, V) \n'
  '   pib.solve() \n'
  '   pib.plot_wavefunction() \n'
- '   pib.plot_energy()$'
+ '   pib.plot_energy()'
             
             
